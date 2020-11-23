@@ -1,0 +1,22 @@
+<div class="content d-flex align-items-center justify-content-center" style="height: 100vh;" role="main"
+  *ngIf=!foundRepository>
+  <form class="col-lg-6 col-md-8 m-auto">
+    <div class="form-group">
+      <label class="font-weight-bold">Github User</label>
+      <input type="text" id="user" #user class="form-control" required value="MichaelaIvanova">
+      <label class="font-weight-bold mt-2">Repository</label>
+      <input type="text" id="repo" #repo class="form-control" required value="ReaLocate">
+    </div>
+
+    <div class="justify-content-between d-flex">
+      <button ng-submit type="button" class="btn btn-primary" (click)="checkRepo(repo.value, user.value)">Go</button>
+      <button type="button" class="btn btn-secondary" (click)="clearInput(repo, user)">Clear</button>
+    </div>
+
+  </form>
+</div>
+<app-issues *ngIf=foundRepository [data]="data"></app-issues>
+<div *ngIf=err class="alert alert-warning alert-dismissible fade show position-absolute col-12 text-center font-weight-bold"
+  style="top:0px; background: #ed0000;">
+  <p style="color: black;">{{errorMessage}} </p>
+</div>

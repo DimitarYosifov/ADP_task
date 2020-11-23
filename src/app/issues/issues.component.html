@@ -1,0 +1,59 @@
+<div class="container d-flex  justify-content-center" style="height: 100vh;">
+    <div class="col-12">
+        <table class="col-form-label-sm table table-striped table-dark" style="table-layout: fixed;" *ngIf=!comments>
+            <caption class="font-weight-bold" style="caption-side:top; text-align:center;font-size: 1.5rem;">{{repo}}'s
+                issues
+            </caption>
+            <thead>
+                <div>
+                    <!-- <img class="col-8" style="border-radius: 50%;" src={{avatar}}> -->
+                </div>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Assignee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data; index as i;">
+                    <td>
+                        {{i + 1}}
+                    </td>
+                    <td class="title"> <a style="cursor: pointer;color: #5167ff;text-decoration: underline;"
+                            (click)="getComments(item.number, item.title)">
+                            <div>
+                                {{item.title}}
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        {{getAssignee(i)}}
+                    </td>
+                </tr>
+        </table>
+        <div class="font-weight-bold text-right mt-3" *ngIf=comments (click)="comments=false" style="cursor: pointer;">
+            back to issues</div>
+        <table class="table table-striped table-dark" *ngIf=comments style="table-layout: fixed;">
+            <caption class="col-form-label-sm font-weight-bold"
+                style="caption-side:top; text-align:center; font-size: 1.5rem;">
+                {{issue}}'s comments
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of commentsData; index as i;">
+                    <td>
+                        {{i + 1}}
+                    </td>
+                    <td style="word-break: break-all;">
+                        {{item.body}}
+                    </td>
+                </tr>
+        </table>
+    </div>
+</div>
